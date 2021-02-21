@@ -33,18 +33,39 @@ class Stock extends CI_Controller{
 			$model->stok = $_POST['stok'];
 			$model->insert();
 			$rows = $model->read();
+			
 			$this->load->view('show_stock_view', ['rows'=>$rows]);
 		}else{
 			$rows = $model->get_kode_product();
-			$model->kode_produk = $rows;
+			//$model->kode_produk = $rows;
 			$array = $model->all_kode;
 			foreach($array as $key => $value){
-				print_r($value);
-				$model->kode_produk = $value;
+				$model->kode_produk = print_r($value);
 			}
 			$this->load->view('add_stok_form_view',['model'=>$model]);
 		}
 	}
 	
+	public function update($id){
+		$this->load->model('Stock_model');
+		$model = $this->Stock_model;
+		if(isset($_POST['btnSubmit'])){
+			$model->kode_stok = $_POST['kode_stok'];
+			$model->kode_produk = $_POST['kode_produk'];
+			$model->stok = $_POST['stok'];
+			$model->update();
+			redirect('stock');
+		}else{
+			//$respon=new stdClass();
+			$query = $this->db->query("SELECT * FROM stock WHERE kode_stok='$id'");
+			foreach ($query->result() as $row){
+				$model->kode_stok = $row->kode_stok;
+				$model->kode_produk = $row->kode_produk;
+				$model->stok = $row->stok_produk;
+				$this->load->view('edit_stok_form_view',['model'=>$model]);
+			}
+			
+		}
+	}
 	
 }
