@@ -49,7 +49,7 @@
 		<tr>
 			<td><?php echo $row->kode_stok; ?></td>
 			<td><?php echo $row->kode_produk; ?></td>
-			<td><?php echo $row->stok; ?></td>
+			<td><?php echo $row->stok_produk; ?></td>
 			<td align="center">
 				<a href="stock/update/<?php echo $row->kode_stok; ?>">Edit</a>
 			</td>
