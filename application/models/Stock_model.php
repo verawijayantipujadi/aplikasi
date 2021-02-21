@@ -16,10 +16,6 @@ class Stock_model extends CI_Model{
 		$this->all_kode = explode(',', $this->get_kode_product());
 	}
 	
-	public function get_table_name(){
-		return 'stock';
-	}
-	
 	public function insert(){
 		$this->db->query("INSERT INTO stock VALUES('$this->kode_stok','$this->kode_produk','$this->stok')");
 	}
@@ -32,6 +28,10 @@ class Stock_model extends CI_Model{
 	public function get_kode_product(){
 		$query = $this->db->query("SELECT kode_produk FROM produk");
 		return $query->row()->kode_produk;
+	}
+	
+	public function update(){
+		$this->db->query("UPDATE stock SET stok_produk='$this->stok' WHERE kode_stok='$this->kode_stok'");
 	}
 	
 	//metode untuk menentukan label dari masing-masing atribut
