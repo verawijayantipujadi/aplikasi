@@ -41,6 +41,7 @@
 		<tr>
 			<th>Kode Stok</th>
 			<th>Kode Produk</th>
+			<th>Produk</th>
 			<th>Jumlah Stock</th>
 			<th>Edit</th>
 		</tr>
@@ -49,6 +50,7 @@
 		<tr>
 			<td><?php echo $row->kode_stok; ?></td>
 			<td><?php echo $row->kode_produk; ?></td>
+			<td><?php echo $row->nama_produk," " , $row->merek_produk; ?></td>
 			<td><?php echo $row->stok_produk; ?></td>
 			<td align="center">
 				<a href="stock/update/<?php echo $row->kode_stok; ?>">Edit</a>
