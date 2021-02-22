@@ -4,6 +4,8 @@ class Stock_model extends CI_Model{
 	public $kode_produk;
 	public $stok;
 	public $all_kode;
+	public $nama_produk;
+	public $merek_produk;
 	//array untuk menyimpan label dari masing-masing atribut
 	public $labels = [] ;
 	
@@ -21,7 +23,8 @@ class Stock_model extends CI_Model{
 	}
 	
 	public function read(){
-		$query = $this->db->query("SELECT * FROM stock Order By kode_stok");
+		$query = $this->db->query("SELECT produk.nama_produk, produk.merek_produk, stock.kode_stok, stock.kode_produk, stock.stok_produk
+			FROM produk INNER JOIN stock ON produk.kode_produk = stock.kode_produk");
 		return $query->result();
 	}
 	
