@@ -35,6 +35,9 @@ class Stock extends CI_Controller{
 			$rows = $model->read();
 			
 			$this->load->view('show_stock_view', ['rows'=>$rows]);
+		}else if(isset($_POST['btnShow'])){
+			$rows = $model->read();
+			$this->load->view('show_stock_view', ['rows'=>$rows]);
 		}else{
 			$rows = $model->get_kode_product();
 			//$model->kode_produk = $rows;
@@ -55,6 +58,9 @@ class Stock extends CI_Controller{
 			$model->stok = $_POST['stok'];
 			$model->update();
 			redirect('stock');
+		}else if(isset($_POST['btnShow'])){
+			$rows = $model->read();
+			$this->load->view('show_stock_view', ['rows'=>$rows]);
 		}else{
 			//$respon=new stdClass();
 			$query = $this->db->query("SELECT * FROM stock WHERE kode_stok='$id'");
